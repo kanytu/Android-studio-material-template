@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<template
+    format="3"
+    revision="1"
+    name="Material Navigation Drawer Activity"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new Activity with a Navigation Drawer and Material Design.">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(layoutName)}"
+        default="MainActivity"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="fragmentLayoutName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(activityClass)}"
+        default="fragment_main"
+        help="The name of the layout to create for the activity's content fragment"/>
+
+    <parameter
+        id="activityTitle"
+        name="Title"
+        type="string"
+        constraints="nonempty"
+        default="MainActivity"
+        suggest="${activityClass}"
+        help="The name of the activity. For launcher activities, the application title." />
+
+    <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />
+
+    <parameter
+        id="parentActivityClass"
+        name="Hierarchical Parent"
+        type="string"
+        constraints="activity|exists|empty"
+        default=""
+        help="The hierarchical parent activity, used to provide a default implementation for the 'Up' button" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+        id="navigationDrawerLayout"
+        name="Navigation Drawer Fragment Name"
+        type="string"
+        constraints="layout|unique"
+        default="fragment_navigation_drawer"/>
+
+    <parameter
+        id="fragmentLayout"
+        name="Navigation Style"
+        type="enum"
+        default="normal"
+        help="Choose the navigation drawer style that fits your needs" >
+        <option id="normal">Normal drawer bellow toolbar</option>
+        <option id="top">Drawer on top of toolbar with ScrimInsetsFrameLayout</option>
+        <option id="black">Normal drawer with darker toolbar when opened.</option>
+    </parameter>
+
+    <parameter
+        id="navigationDrawer"
+        name="Navigation Style"
+        type="enum"
+        default="normal"
+        help="Choose the layout of your navigation drawer. Simple or Google Material style" >
+        <option id="normal">Normal drawer with a simple RecyclerView</option>
+        <option id="google">Drawer with the same design as google applications</option>
+    </parameter>
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_normal_drawer.png</thumb>
+        <!-- attributes act as selectors based on chosen parameters -->
+        <thumb fragmentLayout="normal">template_normal_drawer.png</thumb>
+        <thumb fragmentLayout="top">template_top_drawer.png</thumb>
+        <thumb fragmentLayout="black">template_black_toolbar.png</thumb>
+        <thumb navigationDrawer="google">template_black_toolbar.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
