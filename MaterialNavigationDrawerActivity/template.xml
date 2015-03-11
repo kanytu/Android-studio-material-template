@@ -88,10 +88,10 @@
 
     <parameter
         id="navigationDrawer"
-        name="Navigation Layout"
+        name="Drawer Style"
         type="enum"
         default="normal"
-        help="Choose the layout of your navigation drawer. Simple or Google Material style" >
+        help="Choose the layout of your navigation drawer. Simple or Google Material style">
         <option id="normal">Normal drawer with a simple RecyclerView</option>
         <option id="google">Drawer with the same design as google applications</option>
     </parameter>
@@ -104,8 +104,6 @@
         <thumb fragmentLayout="normal">template_normal_drawer.png</thumb>
         <thumb fragmentLayout="top">template_top_drawer.png</thumb>
         <thumb fragmentLayout="black">template_black_toolbar.png</thumb>
-        <thumb navigationDrawer="normal">template_normal_drawer.png</thumb>
-        <thumb navigationDrawer="google">template_navigation_google.png</thumb>
     </thumbs>
 
     <globals file="globals.xml.ftl" />

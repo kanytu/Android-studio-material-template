@@ -11,10 +11,10 @@
     <color name="myPrimaryColor">#2196F3</color>
     <color name="myPrimaryDarkColor">#1976D2</color>
     <color name="myAccentColor">#FF4081</color>
-    <color name="myDrawerBackground">#F2F2F2</color>
-    <color name="myWindowBackground">#FFFFFF</color>
+    <color name="myDrawerBackground">#FFF</color>
+    <color name="myWindowBackground">#FFF</color>
     <color name="myTextPrimaryColor">#212121</color>
-    <color name="myNavigationColor">#000000</color>
+    <color name="myNavigationColor">#000</color>
 
     <color name="selected_gray">#ffdbdbdb</color>
 </resources>
