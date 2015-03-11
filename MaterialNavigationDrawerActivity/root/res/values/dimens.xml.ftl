@@ -5,6 +5,6 @@
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
-    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="navigation_drawer_width">${(navigationDrawer == 'google')?string('320dp','240dp')}</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
 </resources>

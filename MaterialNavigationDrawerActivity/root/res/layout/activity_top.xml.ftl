@@ -3,7 +3,7 @@
                                         xmlns:app="http://schemas.android.com/apk/res-auto"
                                         android:id="@+id/drawer"
                                         android:layout_width="match_parent"
-                                        android:fitsSystemWindows="true"
+                                        <#if hasScrimInsets>android:fitsSystemWindows="true"</#if>
                                         android:layout_height="match_parent">        
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,22 +23,23 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
     <!-- android:layout_marginTop="?android:attr/actionBarSize"-->
-<#if hasScrimInsets>        
+<#if hasScrimInsets>
 <${packageName}.ScrimInsetsFrameLayout
         android:id="@+id/scrimInsetsFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:layout_gravity="<#if buildApi gte 17>start<#else>left</#if>"
         app:insetForeground="#4000"
-        android:elevation="10dp"
-        </android.support.v4.widget.DrawerLayout></#if>
+        android:elevation="10dp">
+</#if>
     <fragment
         android:id="@+id/fragment_drawer"
         android:name="${packageName}.NavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:layout="@layout/fragment_navigation_drawer"/>
+        android:fitsSystemWindows="true"
+        app:layout="@layout/${navigationDrawerLayout}"/>
 <#if hasScrimInsets></${packageName}.ScrimInsetsFrameLayout></#if>
 
 

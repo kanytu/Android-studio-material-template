@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:id="@+id/googleDrawer"
                 android:background="@android:color/white">
 
     <RelativeLayout
@@ -37,7 +38,6 @@
                 android:layout_height="0dp"
                 android:id="@+id/txtUsername"
                 android:layout_weight="1"
-                android:text="John Doe"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"/>
@@ -47,7 +47,6 @@
                 android:layout_height="0dp"
                 android:id="@+id/txtUserEmail"
                 android:layout_weight="1"
-                android:text="johndoe@doe.com"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
     </RelativeLayout>

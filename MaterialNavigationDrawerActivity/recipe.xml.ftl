@@ -17,18 +17,18 @@
     <merge from="res/values/dimens.xml.ftl"
              to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />
 
+    <instantiate from="res/values-v21/styles.xml.ftl"
+             to="${escapeXmlAttribute(resOut)}/values-v21/styles.xml" />
+    <instantiate from="res/values/styles.xml.ftl"
+             to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
 
     <merge from="res/values/colors.xml.ftl"
              to="${escapeXmlAttribute(resOut)}/values/colors.xml" />
-    <#if fragmentLayout == "top">
+    <#if hasScrimInsets>
     <merge from="res/values/attrs.xml.ftl"
              to="${escapeXmlAttribute(resOut)}/values/attrs.xml" />
     </#if>
 
-    <copy from="res/values-v21/styles.xml.ftl"
-             to="${escapeXmlAttribute(resOut)}/values-v21/styles.xml" />
-    <copy from="res/values/styles.xml.ftl"
-             to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
     <copy from="res/drawable-hdpi"
             to="${escapeXmlAttribute(resOut)}/drawable-hdpi" />
     <copy from="res/drawable-mdpi"
@@ -57,8 +57,7 @@
                    to="${escapeXmlAttribute(resOut)}/layout/${layoutName}.xml" />
     </#if>
 
-
-    <#if fragmentLayout == "normal">
+    <#if navigationDrawer == "normal">
     <instantiate from="res/layout/fragment_navigation_drawer.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${navigationDrawerLayout}.xml" />
     <#else>
@@ -81,5 +80,5 @@
                    to="${escapeXmlAttribute(srcOut)}/ScrimInsetsFrameLayout.java" />
     </#if>
     <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.java" />
-    <open file="${escapeXmlAttribute(resOut)}/layout/${fragmentLayoutName}.xml" />
+    <open file="${escapeXmlAttribute(resOut)}/layout/${navigationDrawerLayout}.xml" />
 </recipe>

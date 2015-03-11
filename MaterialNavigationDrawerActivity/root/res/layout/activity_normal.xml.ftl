@@ -30,6 +30,6 @@
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="<#if buildApi gte 17>start<#else>left</#if>"
-            app:layout="@layout/fragment_navigation_drawer"/>
+            app:layout="@layout/${navigationDrawerLayout}"/>
     </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>

@@ -2,7 +2,7 @@
 <template
     format="3"
     revision="1"
-    name="Material Navigation Drawer Activity"
+    name="Material Drawer Activity"
     minApi="7"
     minBuildApi="14"
     description="Creates a new Activity with a Navigation Drawer and Material Design.">
@@ -88,7 +88,7 @@
 
     <parameter
         id="navigationDrawer"
-        name="Navigation Style"
+        name="Navigation Layout"
         type="enum"
         default="normal"
         help="Choose the layout of your navigation drawer. Simple or Google Material style" >
@@ -104,7 +104,8 @@
         <thumb fragmentLayout="normal">template_normal_drawer.png</thumb>
         <thumb fragmentLayout="top">template_top_drawer.png</thumb>
         <thumb fragmentLayout="black">template_black_toolbar.png</thumb>
-        <thumb navigationDrawer="google">template_black_toolbar.png</thumb>
+        <thumb navigationDrawer="normal">template_normal_drawer.png</thumb>
+        <thumb navigationDrawer="google">template_navigation_google.png</thumb>
     </thumbs>
 
     <globals file="globals.xml.ftl" />

@@ -1,5 +1,6 @@
 package ${packageName};
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -32,6 +33,10 @@ public class ${activityClass} extends ActionBarActivity
 
         // Set up the drawer.
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
+        <#if navigationDrawer == 'google'>
+        // populate the navigation drawer
+        mNavigationDrawerFragment.setUserData("John Doe", "johndoe@doe.com", BitmapFactory.decodeResource(getResources(),R.drawable.avatar));
+        </#if>
     }
 
     @Override

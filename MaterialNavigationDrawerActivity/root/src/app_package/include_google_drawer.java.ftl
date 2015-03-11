@@ -1,4 +1,4 @@
-    public void loadUserData(String user, String email, Bitmap avatar) {
+    public void setUserData(String user, String email, Bitmap avatar) {
         ImageView avatarContainer = (ImageView) mFragmentContainerView.findViewById(R.id.imgAvatar);
         ((TextView) mFragmentContainerView.findViewById(R.id.txtUserEmail)).setText(email);
         ((TextView) mFragmentContainerView.findViewById(R.id.txtUsername)).setText(user);

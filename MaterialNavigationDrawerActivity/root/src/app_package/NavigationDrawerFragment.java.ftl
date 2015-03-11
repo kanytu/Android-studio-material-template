@@ -4,6 +4,16 @@ import android.app.Activity;
 import android.<#if useSupport>support.v4.</#if>app.Fragment;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +24,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +84,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        View view = inflater.inflate(R.layout.${navigationDrawerLayout}, container, false);
         mDrawerList = (RecyclerView) view.findViewById(R.id.drawerList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -119,7 +132,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
      * @param toolbar      The Toolbar of the activity.
      */
     public void setup(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
-        mFragmentContainerView = ${hasScrimInsets?string('(View))','')getActivity().findViewById(fragmentId)${hasScrimInsets?string('.getParent()','')};
+        mFragmentContainerView = ${hasScrimInsets?string('(View)','')}getActivity().findViewById(fragmentId)${hasScrimInsets?string('.getParent()','')};
         mDrawerLayout = drawerLayout;
 
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.myPrimaryDarkColor));
@@ -212,5 +225,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         mActionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    <#if hasScrimInsets><#include "include_google_drawer.java.ftl"></#if>
+    <#if navigationDrawer == 'google'>
+    <#include "include_google_drawer.java.ftl">
+    </#if>
 }
