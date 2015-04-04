@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 public class ScrimInsetsFrameLayout extends FrameLayout {
     private Drawable mInsetForeground;
 
-    private Rect mInsets;
+    private WindowInsets mInsets;
     private Rect mTempRect = new Rect();
     private OnInsetsCallback mOnInsetsCallback;
 
@@ -49,17 +49,15 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         setWillNotDraw(true);
     }
 
+    @TargetApi(20)
     @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        mInsets = new Rect(insets);
+    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+        mInsets = new WindowInsets(insets);
         setWillNotDraw(mInsetForeground == null);
         ViewCompat.postInvalidateOnAnimation(this);
-        if (mOnInsetsCallback != null) {
-            mOnInsetsCallback.onInsetsChanged(insets);
-        }
-        return true; // consume insets
+        return mInsets;
     }
-
+    @TargetApi(20)
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -71,22 +69,22 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
             canvas.translate(getScrollX(), getScrollY());
 
             // Top
-            mTempRect.set(0, 0, width, mInsets.top);
+            mTempRect.set(0, 0, width, mInsets.getSystemWindowInsetTop());
             mInsetForeground.setBounds(mTempRect);
             mInsetForeground.draw(canvas);
 
             // Bottom
-            mTempRect.set(0, height - mInsets.bottom, width, height);
+            mTempRect.set(0, height - mInsets.getSystemWindowInsetBottom(), width, height);
             mInsetForeground.setBounds(mTempRect);
             mInsetForeground.draw(canvas);
 
             // Left
-            mTempRect.set(0, mInsets.top, mInsets.left, height - mInsets.bottom);
+            mTempRect.set(0, mInsets.getSystemWindowInsetTop(), mInsets.getSystemWindowInsetLeft(), height - mInsets.getSystemWindowInsetBottom());
             mInsetForeground.setBounds(mTempRect);
             mInsetForeground.draw(canvas);
 
             // Right
-            mTempRect.set(width - mInsets.right, mInsets.top, width, height - mInsets.bottom);
+            mTempRect.set(width - mInsets.getStableInsetRight(), mInsets.getSystemWindowInsetTop(), width, height - mInsets.getSystemWindowInsetBottom());
             mInsetForeground.setBounds(mTempRect);
             mInsetForeground.draw(canvas);
 
