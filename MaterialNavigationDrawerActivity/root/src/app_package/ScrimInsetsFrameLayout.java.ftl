@@ -6,8 +6,10 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 
@@ -20,7 +22,6 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
 
     private Rect mInsets;
     private Rect mTempRect = new Rect();
-    private OnInsetsCallback mOnInsetsCallback;
 
     public ScrimInsetsFrameLayout(Context context) {
         super(context);
@@ -47,17 +48,31 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         a.recycle();
 
         setWillNotDraw(true);
+
+    }
+
+    @Override
+    public WindowInsets dispatchApplyWindowInsets(WindowInsets insets) {
+        mInsets = new Rect();
+        mInsets.bottom = insets.getSystemWindowInsetBottom();
+        mInsets.top = insets.getSystemWindowInsetTop();
+        mInsets.left = insets.getSystemWindowInsetLeft();
+        mInsets.right = insets.getSystemWindowInsetRight();
+        setWillNotDraw(mInsetForeground == null);
+        ViewCompat.postInvalidateOnAnimation(this);
+        return insets;
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        mInsets = new Rect(insets);
-        setWillNotDraw(mInsetForeground == null);
-        ViewCompat.postInvalidateOnAnimation(this);
-        if (mOnInsetsCallback != null) {
-            mOnInsetsCallback.onInsetsChanged(insets);
+        if (Build.VERSION.SDK_INT < 20) {
+            mInsets = new Rect(insets);
+            setWillNotDraw(mInsetForeground == null);
+            ViewCompat.postInvalidateOnAnimation(this);
+            return true; // consume insetsJH
+        } else {
+            return super.fitSystemWindows(insets);
         }
-        return true; // consume insets
     }
 
     @Override
@@ -108,19 +123,5 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         if (mInsetForeground != null) {
             mInsetForeground.setCallback(null);
         }
-    }
-
-    /**
-     * Allows the calling container to specify a callback for custom processing when insets change (i.e. when
-     * {@link #fitSystemWindows(Rect)} is called. This is useful for setting padding on UI elements based on
-     * UI chrome insets (e.g. a Google Map or a ListView). When using with ListView or GridView, remember to set
-     * clipToPadding to false.
-     */
-    public void setOnInsetsCallback(OnInsetsCallback onInsetsCallback) {
-        mOnInsetsCallback = onInsetsCallback;
-    }
-
-    public static interface OnInsetsCallback {
-        public void onInsetsChanged(Rect insets);
     }
 }

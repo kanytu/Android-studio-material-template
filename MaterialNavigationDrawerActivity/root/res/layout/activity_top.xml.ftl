@@ -26,7 +26,7 @@
 <#if hasScrimInsets>
 <${packageName}.ScrimInsetsFrameLayout
         android:id="@+id/scrimInsetsFrameLayout"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:layout_gravity="<#if buildApi gte 17>start<#else>left</#if>"

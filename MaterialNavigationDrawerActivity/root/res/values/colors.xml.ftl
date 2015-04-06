@@ -16,5 +16,6 @@
     <color name="myTextPrimaryColor">#212121</color>
     <color name="myNavigationColor">#000</color>
 
-    <color name="selected_gray">#ffdbdbdb</color>
+    <drawable name="pressed_gray">#0c000000</drawable>
+    <drawable name="selected_gray">#2c000000</drawable>
 </resources>
