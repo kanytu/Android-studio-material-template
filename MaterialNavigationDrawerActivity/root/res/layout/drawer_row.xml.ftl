@@ -6,11 +6,8 @@
         android:id="@+id/item_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginRight="16dp"
+        android:background="?android:attr/selectableItemBackground"
         android:drawablePadding="16dp"
-        android:layout_marginEnd="16dp"
         android:textSize="14sp"
         android:gravity="center_vertical"
         android:textColor="@color/myTextPrimaryColor"/>
