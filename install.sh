@@ -10,8 +10,8 @@ template_name=MaterialNavigationDrawerActivity
 
 echo Android SDK=$ANDROID_HOME
 if [ -z "$ANDROID_HOME" ]; then
-    echo "ANDROID_HOME is empty"
-    exit
+    ANDROID_HOME=~/Library/Android/sdk
+    echo "ANDROID_HOME is empty -> set to $ANDROID_HOME"
 fi
 dest_dir=$ANDROID_HOME/extras/templates/activities
 
