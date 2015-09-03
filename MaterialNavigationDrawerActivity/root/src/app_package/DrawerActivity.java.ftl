@@ -12,7 +12,7 @@ import android.widget.Toast;
 <#if applicationPackage??>import ${applicationPackage}.R;</#if>
 
 
-public class ${activityClass} extends ActionBarActivity
+public class ${activityClass} extends AppCompatActivity
         implements NavigationDrawerCallbacks {
 
     /**
